@@ -22,21 +22,25 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
   var passwordLength = prompt("How long do you want your password to be?");
-
-  console.log(typeof(passwordLength));
-  if (isNaN(passwordLength) || Number(passwordLength) < 8 || Number(passwordLength) > 128) {
-    alert("Invalid Entry, please enter a number between 8 and 128 for the length.");
-    return "Invalid Entry, Please Try Again";
-  }
-
   var useUpperCase = confirm("Do you want to use upper case letters in your password?");
   var useLowerCase = confirm("Do you want to use lower case letters in your password?");
   var useNumbers = confirm("Do you want to use numbers in your password?");
   var useSpecialCharacters = confirm("Do you want to use special characters in your password?");
   var generatedPassword = "";
+  var selectedCharacterSet= "";
 
 
-  var selectedCharacterSet= ""
+  console.log(typeof(passwordLength));
+  if (isNaN(passwordLength) || Number(passwordLength) < 8 || Number(passwordLength) > 128) {
+    alert("Invalid Entry, please enter a number between 8 and 128 for the length.");
+    return "Invalid entry, please try again.";
+  }
+
+
+  if (!useUpperCase && !useLowerCase && !useNumbers && !useSpecialCharacters) {
+    alert("Please select at least one character type to generate a password.");
+    return "No character types selected, please try again.";
+  }
 
   if (useUpperCase) {
     selectedCharacterSet += characterSets.upperCase;
